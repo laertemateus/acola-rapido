@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from acola_web.views import paginas
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('', paginas.home,name='home')
 ]
