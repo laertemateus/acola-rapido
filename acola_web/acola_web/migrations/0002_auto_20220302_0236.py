@@ -4,6 +4,7 @@ from django.db import migrations
 from datetime import date
 from acola_web import utils
 
+
 class Migration(migrations.Migration):
 
     dependencies = [

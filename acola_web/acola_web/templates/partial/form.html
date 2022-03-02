@@ -5,16 +5,23 @@
 
     {% if form.non_field_errors %}
         <div class="alert alert-danger">
-            {% for e in form.non_field_errors %}
-                <p>{{e}}</p>
-            {% endfor %}                            
+            <ul style="margin:0px;">
+                {% for e in form.non_field_errors %}
+                    <li>{{e}}</li>
+                {% endfor %}          
+            </ul>                  
         </div>
     {% endif %}
 
     {% for f in form.visible_fields %}
         <div class="mb-3">
-            {{ f.label_tag }}
-            {% render_field f class+='form-control' %}
+            {% if f.widget_type == 'checkbox' %}
+                    {% render_field f class+='form-check-label' %}
+                    <label class="form-check-label" for="{{ f.id_for_label }}">{{ f.label }}</label>
+            {% else %}
+                    {{ f.label_tag }}
+                    {% render_field f class+='form-control' %}
+            {% endif %}
         </div>
     {% endfor %}
 
@@ -22,5 +29,12 @@
         <i class="fa fa-{{icon|default:'floppy-disk'}}"></i>
         {{ label_submit|default:'Salvar' }}
     </button>
+
+    {% if button_back is None or button_back %}
+        <button type="button" onclick="history.go(-1)" class="btn btn-secondary">
+            <i class="fa fa-rotate-left"></i>
+            Voltar
+        </button>
+    {% endif %}
 
 </form>

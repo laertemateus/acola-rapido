@@ -15,10 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from acola_web.views import paginas
+from acola_web.views import paginas, usuarios
 
 urlpatterns = [
     path('', paginas.home,name='home'),
     path('login', paginas.login, name='login'),
     path('logout', paginas.logout, name='logout'),
+    path('usuarios', usuarios.index, name='usuarios.index'),
+    path('usuarios/editar/dados/<id>', usuarios.editar_dados, name='usuarios.editar_dados'),
+    path('usuarios/editar/senha/<id>', usuarios.editar_senha, name='usuarios.editar_senha'),
+    path('usuarios/desativar/<id>', usuarios.desativar, name='usuarios.desativar'),
 ]

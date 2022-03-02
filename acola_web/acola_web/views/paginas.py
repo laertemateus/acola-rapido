@@ -21,23 +21,23 @@ def login(request):
     Página de login
     '''
     loginForm = LoginForm(request.POST)
-
+    print(converter_senha('adm1'))
     # Usuário já está logado, não precisa fazer login
     if 'usuario_id' in request.session:
         return redirect('home')
 
     # Formulário válido, testa se pode ser feito o login
     if loginForm.is_valid():
-        usuario = Usuario.objects.get(email=loginForm.cleaned_data['email'], senha=converter_senha(loginForm.cleaned_data['senha']))
+        usuario = Usuario.objects.filter(email=loginForm.cleaned_data['email'], senha=converter_senha(loginForm.cleaned_data['senha']), ativo=1)
 
         # Se o usuário não for encontrado mostrar erro
         # Senão registrar usuário na session e redirecionar
-        if usuario is None:
+        if len(usuario) == 0:
             loginForm.add_error(None, 'Usuário ou senha inválidos')
         else:
-            request.session['usuario_id'] = usuario.id
-            request.session['usuario_nome'] = usuario.nome
-            request.session['usuario_adm'] = usuario.admin
+            request.session['usuario_id'] = usuario[0].id
+            request.session['usuario_nome'] = usuario[0].nome
+            request.session['usuario_adm'] = usuario[0].admin
             return redirect('home')
 
     return render(request, 'paginas/login.html', {
