@@ -18,5 +18,7 @@ from django.urls import path
 from acola_web.views import paginas
 
 urlpatterns = [
-    path('', paginas.home,name='home')
+    path('', paginas.home,name='home'),
+    path('login', paginas.login, name='login'),
+    path('logout', paginas.logout, name='logout'),
 ]

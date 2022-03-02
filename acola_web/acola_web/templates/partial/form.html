@@ -1,0 +1,26 @@
+{% load widget_tweaks %}
+
+<form method="POST">
+    {% csrf_token %}
+
+    {% if form.non_field_errors %}
+        <div class="alert alert-danger">
+            {% for e in form.non_field_errors %}
+                <p>{{e}}</p>
+            {% endfor %}                            
+        </div>
+    {% endif %}
+
+    {% for f in form.visible_fields %}
+        <div class="mb-3">
+            {{ f.label_tag }}
+            {% render_field f class+='form-control' %}
+        </div>
+    {% endfor %}
+
+    <button type="submit" class="btn btn-primary">
+        <i class="fa fa-{{icon|default:'floppy-disk'}}"></i>
+        {{ label_submit|default:'Salvar' }}
+    </button>
+
+</form>
