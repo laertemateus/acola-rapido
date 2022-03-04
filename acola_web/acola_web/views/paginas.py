@@ -2,6 +2,7 @@
 Páginas da aplicação
 '''
 
+from django.contrib.auth.hashers import make_password,check_password
 from datetime import datetime
 from traceback import print_exc
 from django.contrib import auth
@@ -13,6 +14,9 @@ from acola_web.models import Usuario
 
 
 class LoginForm(forms.Form):
+    '''
+    Fomrulário para login
+    '''
     email = forms.CharField(label='E-mail')
     senha = forms.CharField(widget=forms.PasswordInput())
 
@@ -20,11 +24,19 @@ class LoginForm(forms.Form):
 def login(request):
     form = LoginForm(request.POST or None)
 
+    # Redireciona a página caso já exista um usuário autenticado    
+    if request.user.is_authenticated:
+        return redirect('/')
+
+    # Formulário foi preenchido
     if form.is_valid():
         try:
-            print(form.cleaned_data)
-            usuario = Usuario.objects.get(email=form.cleaned_data['email'],senha=form.cleaned_data['senha'])
+            # Busca o usuário
+            usuario = Usuario.objects.get(email=form.cleaned_data['email'])
 
+            if not check_password(form.cleaned_data['senha'], usuario.senha):
+                raise Exception()
+            
             if usuario.ativo:
                 auth.login(request, usuario)
 
@@ -37,7 +49,7 @@ def login(request):
             else:
                 form.add_error(None, 'Usuário não está ativo no sistema')
         except:
-            form.add_error(None, 'Usuário não encontrado')
+            form.add_error(None, 'Usuário ou senha inválidos')
     
     return render(request, 'login.html', {
         'form': form
