@@ -56,11 +56,13 @@ def login(request):
     })
 
 def logout(request):
+    '''
+    Ação de Logout
+    '''
     auth.logout(request)
     return redirect('home')
 
 
-@login_required
 def index(request):
     return render(request, 'index.html',{
 
