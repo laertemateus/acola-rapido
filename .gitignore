@@ -1,2 +1,2 @@
 *pyc
-acola_web/db.sqlite3
+*.sqlite3

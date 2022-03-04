@@ -76,8 +76,10 @@ WSGI_APPLICATION = 'acola_web.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'acola',
+        'USER': 'root',
+        'PASSWORD': 'root'
     }
 }
 
@@ -123,7 +125,6 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
+# CONFIGURAÇAÕ DA AUTENTICAÇÃO DO SISTEMA  
 AUTH_USER_MODEL = 'acola_web.Usuario'
-#AUTHENTICATION_BACKENDS = ['acola_web.auth.UsuarioBackend']
 LOGIN_URL = '/login'
