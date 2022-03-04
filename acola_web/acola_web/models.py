@@ -2,11 +2,15 @@
 Modelo das entidades do sistema
 '''
 
-from cProfile import label
-from cgitb import enable
-from tabnanny import verbose
-from django.contrib.auth.models import AbstractBaseUser, UserManager
+from django.contrib.auth.models import AbstractBaseUser
 from django.db import models
+
+
+def usuario_admin(user):
+    '''
+    Verifica se o usuário é do tipo Admin
+    '''
+    return user.admin
 
 class Usuario(AbstractBaseUser):
     '''

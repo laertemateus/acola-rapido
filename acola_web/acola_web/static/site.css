@@ -1,0 +1,7 @@
+/**
+ * Coluna com tamanho mínimo para botões
+ */
+.acao_col {
+    width: 1px;
+    white-space: nowrap;
+}

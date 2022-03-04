@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -128,3 +129,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # CONFIGURAÇAÕ DA AUTENTICAÇÃO DO SISTEMA  
 AUTH_USER_MODEL = 'acola_web.Usuario'
 LOGIN_URL = '/login'
+
+# FORMATAÇÃO DE DATA/HORA
+USE_L10N = False
+DATE_FORMAT = 'd/m/Y'
+DATETIME_FORMAT = 'd/m/Y H:i'
+
+# Pasta static
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')

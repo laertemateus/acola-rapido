@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load util_tags %}
+
+{% block content %}
+
+<h1>Usuários cadastrados</h1>
+
+<table class="table table-hover table-sm">
+    <tr>
+        <th>Nome</th>
+        <th>E-mail</th>
+        <th>Criado em</th>
+        <th>Último login</th>
+        <th>Administrador?</th>
+        <th>Ações</th>
+    </tr>
+
+    {% for u in usuarios %}
+        <tr>
+            <td>{{ u.nome }}</td>
+            <td>{{ u.email }}</td>
+            <td>{{ u.criado_em }}</td>
+            <td>{{ u.ultimo_login }}</td>
+            <td>
+                {% if u.admin %}
+                    {% icon 'thumbs-up' %}
+                {% endif %}
+            </td>
+            <td class="acao_col">
+                <a href="#" class="btn btn-secondary btn-sm" title="Visualizar dados">
+                    {% icon 'eye' %}
+                </a>
+
+                <a href="#" class="btn btn-warning btn-sm" title="Atualizar informações">
+                    {% icon 'pencil' %}
+                </a>
+
+                <a href="#" class="btn btn-info btn-sm" title="Alterar senha">
+                    {% icon 'key' %}
+                </a>
+
+                <a href="#" class="btn btn-danger btn-sm" title="Excluir o usuário">
+                    {% icon 'minus' %}
+                </a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
