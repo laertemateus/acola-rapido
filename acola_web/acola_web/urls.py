@@ -24,4 +24,5 @@ urlpatterns = [
     path('usuarios', usuarios.index, name='usuarios.index'),
     path('usuarios/editar/dados/<id>', usuarios.editar_dados, name='usuarios.editar_usuario'),
     path('usuarios/editar/senha/<id>', usuarios.editar_senha, name='usuarios.editar_senha'),
+    path('usuarios/excluir/<id>', usuarios.excluir, name='usuarios.excluir')
 ]

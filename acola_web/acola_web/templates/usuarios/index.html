@@ -39,7 +39,7 @@
                     {% icon 'key' %}
                 </a>
 
-                <a href="#" class="btn btn-danger btn-sm" title="Excluir o usuário">
+                <a href="{% url 'usuarios.excluir' u.id %}" onclick="return confirm('Deseja realmente excluir {{ u.nome|escapejs }}?')" class="btn btn-danger btn-sm" title="Excluir o usuário">
                     {% icon 'minus' %}
                 </a>
             </td>
