@@ -64,6 +64,9 @@ def logout(request):
 
 
 def index(request):
+    '''
+    Página inicial da aplicação
+    '''
     return render(request, 'index.html',{
 
     })

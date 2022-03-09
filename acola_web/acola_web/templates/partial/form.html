@@ -1,0 +1,44 @@
+{# Template para formulário #}
+
+{% load widget_tweaks util_tags %}
+
+
+<form method="POST">
+    {% csrf_token %}
+
+    {% for f in form.hidden_fields %}
+        {{ f }}
+    {% endfor %}
+
+    {% for f in form.visible_fields %}
+        {% if f.widget_type == 'checkbox' %}
+            <div class="mb-3">
+                <label id="{{ f.id_for_label }}">
+                    {{ f }} {{ f.label }}
+                </label>
+            </div>
+        {% else %}
+            <div class="mb-3">
+                {{ f.label_tag }}
+                
+                {% if f.errors %}
+                    {{ f|add_class:'form-control is-invalid'}}
+                    {% for e in f.errors %}
+                        <div class="invalid-feedback">{{ e }}</div>
+                    {% endfor %}
+                {% else %}
+                    {{ f|add_class:'form-control' }}
+                {% endif %}
+            </div>
+        {% endif %}
+    {% endfor %}
+
+    <div class="mb-3">
+        <a href="{% url url_voltar %}" class="btn btn-secondary">
+            {% icon 'chevron-left' %} Voltar
+        </a>
+        <button type="submit" class="btn btn-success">
+            {% icon 'floppy-disk' %} Salvar
+        </button>
+    </div>
+</form>

@@ -31,11 +31,11 @@
                     {% icon 'eye' %}
                 </a>
 
-                <a href="#" class="btn btn-warning btn-sm" title="Atualizar informações">
+                <a href="{% url 'usuarios.editar_usuario' u.id %}" class="btn btn-warning btn-sm" title="Atualizar informações">
                     {% icon 'pencil' %}
                 </a>
 
-                <a href="#" class="btn btn-info btn-sm" title="Alterar senha">
+                <a href="{% url 'usuarios.editar_senha' u.id %}" class="btn btn-info btn-sm" title="Alterar senha">
                     {% icon 'key' %}
                 </a>
 

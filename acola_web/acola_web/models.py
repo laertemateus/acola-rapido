@@ -18,7 +18,7 @@ class Usuario(AbstractBaseUser):
     '''
     senha = models.CharField(max_length=100, verbose_name='Senha')
     nome = models.CharField(max_length=200, verbose_name='Nome')
-    email = models.CharField(max_length=200, verbose_name='E-mail',unique=True)
+    email = models.EmailField(max_length=200, verbose_name='E-mail',unique=True)
     ativo = models.BooleanField(default=True, verbose_name='Ativo')
     admin = models.BooleanField(default=False,verbose_name='Adminsitrador')
     criado_em = models.DateTimeField(auto_now_add=True, verbose_name='Criado em')

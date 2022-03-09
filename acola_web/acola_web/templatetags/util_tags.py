@@ -13,3 +13,7 @@ def icon(icon):
     Gera o código HTML para a tag
     '''
     return mark_safe('<i class="fa fa-'+icon+'"></i>')
+
+@register.filter
+def debug(obj):
+    return dir(obj)
